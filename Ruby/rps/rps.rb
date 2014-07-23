@@ -16,16 +16,8 @@ class TestRPS < MiniTest::Test
 end
 
 class RPS
+  attr_reader :score, :losses, :wins
   def initialize
     @score, @losses, @wins = 0, 0, 0
-  end
-  def score
-    @score
-  end
-  def losses
-    @losses
-  end
-  def wins
-    @wins
   end
 end
