@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-
 class TestRPS < MiniTest::Test
   def setup
     @rps = RPS.new
@@ -16,12 +15,17 @@ class TestRPS < MiniTest::Test
   def test_throw_returns_string
     assert_instance_of String, @rps.throw('rock')
   end
+  def test_throw_assigns_player_move
+    @rps.throw('rock')
+    assert_equal 'rock', @rps.instance_variable_get(:@player_move)
+  end
 end
 
 class RPS
   attr_reader :score, :losses, :wins
   def initialize
     @score, @losses, @wins = 0, 0, 0
+    @player_move = nil
   end
   def throw(move)
     ""
