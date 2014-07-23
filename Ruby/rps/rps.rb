@@ -10,6 +10,9 @@ class TestRPS < MiniTest::Test
   def test_default_losses_is_zero
     assert_equal 0, @rps.losses
   end
+  def test_default_wins_is_zero
+    assert_equal 0, @rps.wins
+  end
 end
 
 class RPS
