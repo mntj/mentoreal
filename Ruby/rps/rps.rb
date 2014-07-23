@@ -17,12 +17,15 @@ end
 
 class RPS
   def initialize
-    @score, @losses = 0, 0
+    @score, @losses, @wins = 0, 0, 0
   end
   def score
     @score
   end
   def losses
     @losses
+  end
+  def wins
+    @wins
   end
 end
