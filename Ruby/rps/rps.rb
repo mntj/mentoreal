@@ -14,7 +14,7 @@ class TestRPS < MiniTest::Test
     assert_equal 0, @rps.wins
   end
   def test_throw_returns_string
-    assert_instance_of String @rps.throw('rock')
+    assert_instance_of String, @rps.throw('rock')
   end
 end
 
@@ -22,5 +22,8 @@ class RPS
   attr_reader :score, :losses, :wins
   def initialize
     @score, @losses, @wins = 0, 0, 0
+  end
+  def throw(move)
+    ""
   end
 end
