@@ -28,6 +28,7 @@ class RPS
     @player_move = nil
   end
   def throw(move)
+    @player_move = move
     ""
   end
 end
