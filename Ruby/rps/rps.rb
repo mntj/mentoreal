@@ -19,6 +19,10 @@ class TestRPS < MiniTest::Test
     @rps.throw('rock')
     assert_equal 'rock', @rps.instance_variable_get(:@player_move)
   end
+  def test_throw_assigns_computer_move
+    @rps.throw('rock')
+    assert_instance_of String, @computer_move
+  end
 end
 
 class RPS
