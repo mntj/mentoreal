@@ -13,6 +13,9 @@ class TestRPS < MiniTest::Test
   def test_default_wins_is_zero
     assert_equal 0, @rps.wins
   end
+  def test_throw_returns_string
+    assert_instance_of String @rps.throw('rock')
+  end
 end
 
 class RPS
