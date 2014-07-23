@@ -1,1 +1,1 @@
-This repository is for private use as part of a coding mentorship program.
+This repository is for private use as part of a programming mentorship program.
