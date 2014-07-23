@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require 'pry'
 
 class TestRPS < MiniTest::Test
   def setup
@@ -15,8 +14,7 @@ end
 
 class RPS
   def initialize
-    @score = 0
-    @losses = 0
+    @score, @losses = 0, 0
   end
   def score
     @score
