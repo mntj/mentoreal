@@ -16,4 +16,7 @@ class RPS
   def score
     0
   end
+  def losses
+    0
+  end
 end
