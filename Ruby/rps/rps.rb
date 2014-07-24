@@ -45,6 +45,17 @@ class TestRPS < MiniTest::Test
       assert_equal "Paper against paper! It's a tie!", @rps.instance_variable_get(:@string)  if @rps.instance_variable_get(:@computer_move) === 'paper'
     end
   end
+  def test_throw_returns_correct_string_for_scissors_move
+    begin
+      @rps.throw('scissors')
+    rescue
+      "Exception!"
+    ensure
+      assert_equal "Scissors against paper! You win!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'paper'
+      assert_equal "Scissors against rock! You lose!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'rock'
+      assert_equal "Scissors against scissors! It's a tie!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
+    end
+  end
 end
 
 class RPS
