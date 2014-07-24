@@ -45,6 +45,17 @@ class RPS
   def throw(move)
     @player_move = move
     @computer_move = @moves.sample
-    ""
+    case @player_move
+    when 'rock'
+      if @computer_move === 'scissors'
+        @string = "Rock against scissors! You win!"
+      elsif @computer_move === 'paper'
+        @string = "Rock against paper! You lose!"
+      elsif @computer_move === 'rock'
+        @string = "Rock against rock! It's a tie!"
+      else
+        raise "I'm broken!"
+      end
+    end
   end
 end
