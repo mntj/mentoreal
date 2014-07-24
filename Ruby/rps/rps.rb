@@ -30,8 +30,6 @@ class RPS
   attr_reader :score, :losses, :wins
   def initialize
     @score, @losses, @wins = 0, 0, 0
-    @player_move = nil
-    @computer_move = nil
     @moves = ['rock', 'paper', 'scissors']
   end
   def throw(move)
