@@ -67,6 +67,16 @@ class RPS
       else
         raise "I'm broken!"
       end
+    when 'paper'
+      if @computer_move === 'rock'
+        @string = "Paper against rock! You win!"
+      elsif @computer_move === 'scissors'
+        @string = "Paper against scissors! You lose!"
+      elsif @computer_move === 'paper'
+        @string = "Paper against paper! It's a tie!"
+      else
+        raise "I'm broken!"
+      end
     end
   end
 end
