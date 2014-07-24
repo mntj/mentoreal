@@ -23,7 +23,7 @@ class TestRPS < MiniTest::Test
     @rps.throw('rock')
     assert_instance_of String, @rps.instance_variable_get(:@computer_move)
   end
-  def test_throw_returns_correct_string
+  def test_throw_returns_correct_string_for_rock_move
     begin
       @rps.throw('rock')
     rescue
@@ -32,6 +32,17 @@ class TestRPS < MiniTest::Test
       assert_equal @rps.instance_variable_get(:@string), "Rock against scissors! You win!" if @rps.instance_variable_get(:@computer_move) === 'scissors'
       assert_equal @rps.instance_variable_get(:@string), "Rock against paper! You lose!"   if @rps.instance_variable_get(:@computer_move) === 'paper'
       assert_equal @rps.instance_variable_get(:@string), "Rock against rock! It's a tie!"  if @rps.instance_variable_get(:@computer_move) === 'rock'
+    end
+  end
+  def test_throw_returns_correct_string_for_paper_move
+    begin
+      @rps.throw('paper')
+    rescue
+      "Exception!"
+    ensure
+      assert_equal @rps.instance_variable_get(:@string), "Paper against rock! You win!"      if @rps.instance_variable_get(:@computer_move) === 'rock'
+      assert_equal @rps.instance_variable_get(:@string), "Paper against scissors! You lose!" if @rps.instance_variable_get(:@computer_move) === 'scissors'
+      assert_equal @rps.instance_variable_get(:@string), "Paper against paper! It's a tie!"  if @rps.instance_variable_get(:@computer_move) === 'paper'
     end
   end
 end
