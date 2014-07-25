@@ -153,6 +153,7 @@ class RPS
     elsif @computer_score === 3
       @score = 0
       @computer_score = 0
+      @losses += 1
       puts @string
       "You lost this round!"
     else
