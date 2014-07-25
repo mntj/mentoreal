@@ -71,6 +71,7 @@ class RPS
       if @computer_move === 'scissors'
         @score += 1
         @string = "Rock against scissors! You win!"
+        end_of_round?
       elsif @computer_move === 'paper'
         @string = "Rock against paper! You lose!"
       elsif @computer_move === 'rock'
@@ -82,6 +83,7 @@ class RPS
       if @computer_move === 'rock'
         @score += 1
         @string = "Paper against rock! You win!"
+        end_of_round?
       elsif @computer_move === 'scissors'
         @string = "Paper against scissors! You lose!"
       elsif @computer_move === 'paper'
@@ -93,6 +95,7 @@ class RPS
       if @computer_move === 'paper'
         @score += 1
         @string = "Scissors against paper! You win!"
+        end_of_round?
       elsif @computer_move === 'rock'
         @string = "Scissors against rock! You lose!"
       elsif @computer_move === 'scissors'
@@ -101,5 +104,12 @@ class RPS
         raise "I'm broken!"
       end
     end
+  end
+  def end_of_round?
+      if @score === 3
+        @score = 0
+        "You won the round!"
+      else "Your score is #{@score}."
+      end
   end
 end
