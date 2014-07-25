@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require 'pry'
 class TestRPS < MiniTest::Test
   def setup
     @rps = RPS.new
@@ -53,7 +52,6 @@ class TestRPS < MiniTest::Test
     5.times do
       rps.instance_variable_set(:@computer_move, 'scissors')
       rps.throw('rock')
-      binding.pry
       assert(rps.score >= 0 && rps.score <= 3, msg = "Assertion failed")
     end
   end
