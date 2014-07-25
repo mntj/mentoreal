@@ -19,10 +19,6 @@ class TestRPS < MiniTest::Test
     @rps.throw('rock')
     assert_equal 'rock', @rps.instance_variable_get(:@player_move)
   end
-  def test_throw_assigns_computer_move
-    @rps.throw('rock')
-    assert_instance_of String, @rps.instance_variable_get(:@computer_move)
-  end
   def test_throw_returns_correct_string_for_rock_move
     @rps.throw('rock')
     assert_equal "Rock against scissors! You win!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
@@ -71,12 +67,20 @@ class TestRPS < MiniTest::Test
       assert(rps.score >= 0 && rps.score <= 3, msg = "Score is not between 0 and 3")
     end
   end
+  def test_wins_incremented_after_3_consecutive_rounds_won
+    rps = RPS.new
+    3.times do
+      rps.instance_variable_set(:@computer_move, 'scissors')
+      rps.throw('rock')
+    end
+    assert_equal 1, @wins
+  end
 end
 
 class RPS
-  attr_reader :score, :computer_score, :losses, :wins
+  attr_reader :score, :computer_score, :wins, :losses
   def initialize
-    @score, @computer_score, @losses, @wins = 0, 0, 0, 0
+    @score, @computer_score, @wins, @losses = 0, 0, 0, 0
     @moves = ['rock', 'paper', 'scissors']
   end
   def throw(move)
