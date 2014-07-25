@@ -52,7 +52,15 @@ class TestRPS < MiniTest::Test
     5.times do
       rps.instance_variable_set(:@computer_move, 'scissors')
       rps.throw('rock')
-      assert(rps.score >= 0 && rps.score <= 3, msg = "Assertion failed")
+      assert(rps.score >= 0 && rps.score <= 3, msg = "Score is not between 0 and 3")
+    end
+  end
+  def test_throw_resets_round_after_computer_wins
+    rps = RPS.new
+    5.times do
+      rps.instance_variable_set(:@computer_move, 'scissors')
+      rps.throw('paper')
+      assert(rps.computer_score >= 0 && <= 3, msg = "Computer score is not between 0 and 3")
     end
   end
 end
