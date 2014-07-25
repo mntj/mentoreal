@@ -59,7 +59,7 @@ class TestRPS < MiniTest::Test
       rps.instance_variable_set(:@computer_move, 'scissors')
       rps.throw('rock')
       assert(rps.score >= 0 && rps.score <= 3, msg = "Score is not between 0 and 3")
-      assert(rps.computer_score >= 0 && <= 3, msg = "Computer score is not between 0 and 3")
+      assert(rps.computer_score >= 0 && rps.computer_score <= 3, msg = "Computer score is not between 0 and 3")
     end
   end
   def test_end_of_round_resets_scores_after_computer_wins
@@ -67,16 +67,16 @@ class TestRPS < MiniTest::Test
     5.times do
       rps.instance_variable_set(:@computer_move, 'scissors')
       rps.throw('paper')
-      assert(rps.computer_score >= 0 && <= 3, msg = "Computer score is not between 0 and 3")
+      assert(rps.computer_score >= 0 && rps.computer_score <= 3, msg = "Computer score is not between 0 and 3")
       assert(rps.score >= 0 && rps.score <= 3, msg = "Score is not between 0 and 3")
     end
   end
 end
 
 class RPS
-  attr_reader :score, :losses, :wins
+  attr_reader :score, :computer_score, :losses, :wins
   def initialize
-    @score, @losses, @wins = 0, 0, 0, 0
+    @score, @computer_score, @losses, @wins = 0, 0, 0, 0
     @moves = ['rock', 'paper', 'scissors']
   end
   def throw(move)
@@ -89,7 +89,9 @@ class RPS
         @string = "Rock against scissors! You win!"
         end_of_round?
       elsif @computer_move === 'paper'
+        @computer_score += 1
         @string = "Rock against paper! You lose!"
+        end_of_round?
       elsif @computer_move === 'rock'
         @string = "Rock against rock! It's a tie!"
       else
@@ -101,7 +103,9 @@ class RPS
         @string = "Paper against rock! You win!"
         end_of_round?
       elsif @computer_move === 'scissors'
+        @computer_score += 1
         @string = "Paper against scissors! You lose!"
+        end_of_round?
       elsif @computer_move === 'paper'
         @string = "Paper against paper! It's a tie!"
       else
@@ -113,7 +117,9 @@ class RPS
         @string = "Scissors against paper! You win!"
         end_of_round?
       elsif @computer_move === 'rock'
+        @computer_score += 1
         @string = "Scissors against rock! You lose!"
+        end_of_round?
       elsif @computer_move === 'scissors'
         @string = "Scissors against scissors! It's a tie!"
       else
@@ -124,8 +130,13 @@ class RPS
   def end_of_round?
       if @score === 3
         @score = 0
+        @computer_score = 0
         "You won the round!"
-      else "Your score is #{@score}."
+      elsif @computer_score === 3
+        @score = 0
+        @computer_score = 0
+        "You lost this round!"
+      else "Your score: #{@score}, Computer score: #{@computer_score}"
       end
   end
 end
