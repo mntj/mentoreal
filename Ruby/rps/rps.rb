@@ -75,6 +75,14 @@ class TestRPS < MiniTest::Test
     end
     assert_equal 1, rps.wins
   end
+  def test_losses_incremented_after_3_consecutive_rounds_lost
+    rps = RPS.new
+    3.times do
+      rps.instance_variable_set(:@computer_move, 'scissors')
+      rps.throw('paper')
+    end
+    assert_equal 1, rps.losses
+  end
 end
 
 class RPS
