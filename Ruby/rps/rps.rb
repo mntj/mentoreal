@@ -58,12 +58,13 @@ class TestRPS < MiniTest::Test
   end
   def test_throw_increments_score_upon_win
     begin
-      @rps.throw('rock')
+      rps = RPS.new
+      rps.instance_variable_set(:@computer_move, 'scissors')
+      rps.throw('rock')
     rescue
       "Exception!"
     ensure
-      @rps.instance_variable_set(:@computer_move, 'scissors')
-      assert @score === 1
+      assert_equal 1, rps.score
     end
   end
 end
