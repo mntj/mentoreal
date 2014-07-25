@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'pry'
 class TestRPS < MiniTest::Test
   def setup
     @rps = RPS.new
@@ -24,28 +25,37 @@ class TestRPS < MiniTest::Test
     assert_instance_of String, @rps.instance_variable_get(:@computer_move)
   end
   def test_throw_returns_correct_string_for_rock_move
-      @rps.throw('rock')
-      assert_equal "Rock against scissors! You win!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
-      assert_equal "Rock against paper! You lose!", @rps.instance_variable_get(:@string)   if @rps.instance_variable_get(:@computer_move) === 'paper'
-      assert_equal "Rock against rock! It's a tie!", @rps.instance_variable_get(:@string)  if @rps.instance_variable_get(:@computer_move) === 'rock'
+    @rps.throw('rock')
+    assert_equal "Rock against scissors! You win!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
+    assert_equal "Rock against paper! You lose!", @rps.instance_variable_get(:@string)   if @rps.instance_variable_get(:@computer_move) === 'paper'
+    assert_equal "Rock against rock! It's a tie!", @rps.instance_variable_get(:@string)  if @rps.instance_variable_get(:@computer_move) === 'rock'
   end
   def test_throw_returns_correct_string_for_paper_move
-      @rps.throw('paper')
-      assert_equal "Paper against rock! You win!", @rps.instance_variable_get(:@string)      if @rps.instance_variable_get(:@computer_move) === 'rock'
-      assert_equal "Paper against scissors! You lose!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
-      assert_equal "Paper against paper! It's a tie!", @rps.instance_variable_get(:@string)  if @rps.instance_variable_get(:@computer_move) === 'paper'
+    @rps.throw('paper')
+    assert_equal "Paper against rock! You win!", @rps.instance_variable_get(:@string)      if @rps.instance_variable_get(:@computer_move) === 'rock'
+    assert_equal "Paper against scissors! You lose!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
+    assert_equal "Paper against paper! It's a tie!", @rps.instance_variable_get(:@string)  if @rps.instance_variable_get(:@computer_move) === 'paper'
   end
   def test_throw_returns_correct_string_for_scissors_move
-      @rps.throw('scissors')
-      assert_equal "Scissors against paper! You win!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'paper'
-      assert_equal "Scissors against rock! You lose!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'rock'
-      assert_equal "Scissors against scissors! It's a tie!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
+    @rps.throw('scissors')
+    assert_equal "Scissors against paper! You win!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'paper'
+    assert_equal "Scissors against rock! You lose!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'rock'
+    assert_equal "Scissors against scissors! It's a tie!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
   end
   def test_throw_increments_score_upon_win
-      rps = RPS.new
+    rps = RPS.new
+    rps.instance_variable_set(:@computer_move, 'scissors')
+    rps.throw('rock')
+    assert_equal 1, rps.score
+  end
+  def test_throw_resets_score_after_3_wins
+    rps = RPS.new
+    5.times do
       rps.instance_variable_set(:@computer_move, 'scissors')
       rps.throw('rock')
-      assert_equal 1, rps.score
+      binding.pry
+      assert(rps.score >= 0 && rps.score <= 3, msg = "Assertion failed")
+    end
   end
 end
 
