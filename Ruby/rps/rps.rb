@@ -73,7 +73,7 @@ class TestRPS < MiniTest::Test
       rps.instance_variable_set(:@computer_move, 'scissors')
       rps.throw('rock')
     end
-    assert_equal 1, @wins
+    assert_equal 1, rps.wins
   end
 end
 
@@ -139,6 +139,7 @@ class RPS
     if @score === 3
       @score = 0
       @computer_score = 0
+      @wins += 1
       puts @string
       "You won the round!"
     elsif @computer_score === 3
