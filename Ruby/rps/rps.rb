@@ -94,6 +94,7 @@ class RPS
         end_of_round?
       elsif @computer_move === 'rock'
         @string = "Rock against rock! It's a tie!"
+        end_of_round?
       else
         raise "I'm broken!"
       end
@@ -108,6 +109,7 @@ class RPS
         end_of_round?
       elsif @computer_move === 'paper'
         @string = "Paper against paper! It's a tie!"
+        end_of_round?
       else
         raise "I'm broken!"
       end
@@ -122,21 +124,27 @@ class RPS
         end_of_round?
       elsif @computer_move === 'scissors'
         @string = "Scissors against scissors! It's a tie!"
+        end_of_round?
       else
         raise "I'm broken!"
       end
     end
   end
   def end_of_round?
-      if @score === 3
-        @score = 0
-        @computer_score = 0
-        "You won the round!"
-      elsif @computer_score === 3
-        @score = 0
-        @computer_score = 0
-        "You lost this round!"
-      else "Your score: #{@score}, Computer score: #{@computer_score}"
-      end
+    @computer_move = nil
+    if @score === 3
+      @score = 0
+      @computer_score = 0
+      puts @string
+      "You won the round!"
+    elsif @computer_score === 3
+      @score = 0
+      @computer_score = 0
+      puts @string
+      "You lost this round!"
+    else
+      puts @string
+      "Your score: #{@score}, Computer score: #{@computer_score}"
+    end
   end
 end
