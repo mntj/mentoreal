@@ -157,7 +157,8 @@ class RPS
       puts @string
       "You lost this round!"
     else
-      @string
+      puts @string
+      "Your score: #{@score}, Computer score: #{@computer_score}"
     end
   end
 end
