@@ -24,48 +24,28 @@ class TestRPS < MiniTest::Test
     assert_instance_of String, @rps.instance_variable_get(:@computer_move)
   end
   def test_throw_returns_correct_string_for_rock_move
-    begin
       @rps.throw('rock')
-    rescue
-      "Exception!"
-    ensure
       assert_equal "Rock against scissors! You win!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
       assert_equal "Rock against paper! You lose!", @rps.instance_variable_get(:@string)   if @rps.instance_variable_get(:@computer_move) === 'paper'
       assert_equal "Rock against rock! It's a tie!", @rps.instance_variable_get(:@string)  if @rps.instance_variable_get(:@computer_move) === 'rock'
-    end
   end
   def test_throw_returns_correct_string_for_paper_move
-    begin
       @rps.throw('paper')
-    rescue
-      "Exception!"
-    ensure
       assert_equal "Paper against rock! You win!", @rps.instance_variable_get(:@string)      if @rps.instance_variable_get(:@computer_move) === 'rock'
       assert_equal "Paper against scissors! You lose!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
       assert_equal "Paper against paper! It's a tie!", @rps.instance_variable_get(:@string)  if @rps.instance_variable_get(:@computer_move) === 'paper'
-    end
   end
   def test_throw_returns_correct_string_for_scissors_move
-    begin
       @rps.throw('scissors')
-    rescue
-      "Exception!"
-    ensure
       assert_equal "Scissors against paper! You win!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'paper'
       assert_equal "Scissors against rock! You lose!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'rock'
       assert_equal "Scissors against scissors! It's a tie!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
-    end
   end
   def test_throw_increments_score_upon_win
-    begin
       rps = RPS.new
       rps.instance_variable_set(:@computer_move, 'scissors')
       rps.throw('rock')
-    rescue
-      "Exception!"
-    ensure
       assert_equal 1, rps.score
-    end
   end
 end
 
