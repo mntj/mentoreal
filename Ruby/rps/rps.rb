@@ -77,10 +77,11 @@ class RPS
   end
   def throw(move)
     @player_move = move
-    @computer_move = @moves.sample
+    @computer_move ||= @moves.sample
     case @player_move
     when 'rock'
       if @computer_move === 'scissors'
+        @score += 1
         @string = "Rock against scissors! You win!"
       elsif @computer_move === 'paper'
         @string = "Rock against paper! You lose!"
@@ -91,6 +92,7 @@ class RPS
       end
     when 'paper'
       if @computer_move === 'rock'
+        @score += 1
         @string = "Paper against rock! You win!"
       elsif @computer_move === 'scissors'
         @string = "Paper against scissors! You lose!"
@@ -101,6 +103,7 @@ class RPS
       end
     when 'scissors'
       if @computer_move === 'paper'
+        @score += 1
         @string = "Scissors against paper! You win!"
       elsif @computer_move === 'rock'
         @string = "Scissors against rock! You lose!"
