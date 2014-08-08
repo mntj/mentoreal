@@ -4,7 +4,7 @@ class RPS
     @score, @computer_score, @wins, @losses = 0, 0, 0, 0
     @moves = ['rock', 'paper', 'scissors']
   end
-  def throw(move)
+  def play(move)
     @player_move = move
     @computer_move ||= @moves.sample
     case @player_move
