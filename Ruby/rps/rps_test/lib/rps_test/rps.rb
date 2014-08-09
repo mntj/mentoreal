@@ -1,14 +1,17 @@
 class RPS
   attr_reader :score, :computer_score, :wins, :losses
-  def initialize(dynamite=false)
+  def initialize(dynamite=false, lizard_spock=false)
     @score, @computer_score, @wins, @losses = 0, 0, 0, 0
     @moves = ['rock', 'paper', 'scissors']
     @dynamite_moves = @moves << 'dynamite'
+    @lizard_spock_moves = @moves + ['lizard', 'spock']
   end
   def play(move)
     @player_move = move
     if dynamite
       @computer_move ||= @dynamite_moves.sample
+    elsif lizard_spock
+      @computer_move ||= @lizard_spock_moves.sample
     else
       @computer_move ||= @moves.sample
     end
@@ -79,7 +82,62 @@ class RPS
           raise "I'm broken!"
         end
       else
-        raise "This isn't a dynamite game! Try RPS.new(true) to begin a dynamite game."
+        raise "This isn't a dynamite game! Try RPS.new(true, false) to begin a dynamite game."
+      end
+    when 'lizard'
+      if lizard_spock
+        if @computer_move === 'paper'
+          @score += 1
+          @string = "Lizard against paper! You win!"
+          end_of_round_checker
+        elsif @computer_move === 'rock'
+          @computer_score += 1
+          @string = "Lizard against rock! You lose!"
+          end_of_round_checker
+        elsif @computer_move === 'scissors'
+          @computer_score += 1
+          @string = "Lizard against scissors! You lose!"
+          end_of_round_checker
+        elsif @computer_move === 'spock'
+          @score += 1
+          @string = "Lizard against spock! You win!"
+          end_of_round_checker
+        elsif @computer_move === 'lizard'
+          @string = "Lizard against lizard! It's a tie!"
+          end_of_round_checker
+        else
+          raise "I'm broken!"
+        end
+      else
+        raise "This isn't a lizard-spock game! Try RPS.new(false, true) to begin a lizard-spock game."
+      end
+    when 'spock'
+      if lizard_spock
+        if @computer_move === 'paper'
+          @computer_score += 1
+          @string = "Spock against paper! You lose!"
+          end_of_round_checker
+        elsif @computer_move === 'rock'
+          @score += 1
+          @string = "Spock against rock! You win!"
+          end_of_round_checker
+        elsif @computer_move === 'scissors'
+          @score += 1
+          @string = "Spock against scissors! You win!"
+          end_of_round_checker
+        elsif @computer_move === 'lizard'
+          @computer_score += 1
+          @string = "Spock against lizard! You lose!"
+          end_of_round_checker
+        elsif @computer_move === 'spock'
+          @string = "Spock against spock! It's a tie!"
+          end_of_round_checker
+        else
+          raise "I'm broken!"
+        end
+      else
+        raise "This isn't a lizard-spock game! Try RPS.new(false, true) to begin a lizard-spock game."
+      end
     end
   end
   def end_of_round_checker
