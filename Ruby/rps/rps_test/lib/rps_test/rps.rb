@@ -1,11 +1,11 @@
 class RPS
   attr_reader :score, :computer_score, :wins, :losses
-  def initialize
+  def initialize(dynamite=false)
     @score, @computer_score, @wins, @losses = 0, 0, 0, 0
     @moves = ['rock', 'paper', 'scissors']
     @dynamite_moves = @moves << 'dynamite'
   end
-  def play(move, dynamite=false)
+  def play(move)
     @player_move = move
     if dynamite
       @computer_move ||= @dynamite_moves.sample
@@ -75,9 +75,11 @@ class RPS
         elsif @computer_move === 'dynamite'
           @string = "Dynamite against dynamite! It's a tie!"
           end_of_round_checker
+        else
+          raise "I'm broken!"
         end
       else
-        raise "This isn't a dynamite game! Try play([your_move], true)"
+        raise "This isn't a dynamite game! Try RPS.new(true) to begin a dynamite game."
     end
   end
   def end_of_round_checker

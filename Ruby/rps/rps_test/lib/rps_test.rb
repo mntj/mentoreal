@@ -29,11 +29,25 @@ module RpsTest
       assert_equal "Paper against scissors! You lose!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
       assert_equal "Paper against paper! It's a tie!", @rps.instance_variable_get(:@string)  if @rps.instance_variable_get(:@computer_move) === 'paper'
     end
+    def test_play_returns_correct_string_for_paper_move
+      @rps.play('scissors')
+      assert_equal "Paper against paper! It's a tie!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'paper'
+      assert_equal "Paper against rock! You win!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'rock'
+      assert_equal "Paper against scissors! You lose!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
+    end
     def test_play_returns_correct_string_for_scissors_move
-      @rps.('scissors')
+      @rps.play('scissors')
       assert_equal "Scissors against paper! You win!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'paper'
       assert_equal "Scissors against rock! You lose!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'rock'
       assert_equal "Scissors against scissors! It's a tie!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
+    end
+    def test_play_returns_correct_string_for_dynamite_move
+      @rps = RPS.new(true)
+      @rps.play('dynamite')
+      assert_equal "Dynamite against paper! You win!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'paper'
+      assert_equal "Dynamite against rock! You win!", @rps.instance_variable_get(:@string)        if @rps.instance_variable_get(:@computer_move) === 'rock'
+      assert_equal "Dynamite against scissors! You lose!", @rps.instance_variable_get(:@string)   if @rps.instance_variable_get(:@computer_move) === 'scissors'
+      assert_equal "Dynamite against dynamite! It's a tie!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'dynamite'
     end
     def test_play_increments_score_upon_win
       rps = RPS.new
