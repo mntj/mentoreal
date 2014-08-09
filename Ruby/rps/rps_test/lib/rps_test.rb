@@ -31,8 +31,8 @@ module RpsTest
     end
     def test_play_returns_correct_string_for_paper_move
       @rps.play('scissors')
-      assert_equal "Paper against paper! It's a tie!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'paper'
-      assert_equal "Paper against rock! You win!", @rps.instance_variable_get(:@string)       if @rps.instance_variable_get(:@computer_move) === 'rock'
+      assert_equal "Paper against paper! It's a tie!", @rps.instance_variable_get(:@string)  if @rps.instance_variable_get(:@computer_move) === 'paper'
+      assert_equal "Paper against rock! You win!", @rps.instance_variable_get(:@string)      if @rps.instance_variable_get(:@computer_move) === 'rock'
       assert_equal "Paper against scissors! You lose!", @rps.instance_variable_get(:@string) if @rps.instance_variable_get(:@computer_move) === 'scissors'
     end
     def test_play_returns_correct_string_for_scissors_move
