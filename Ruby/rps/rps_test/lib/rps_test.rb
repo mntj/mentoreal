@@ -16,9 +16,6 @@ module RpsTest
     def test_default_wins_is_zero
       assert_equal 0, @rps.wins
     end
-    def test_play_returns_a_string
-      assert_instance_of String, @rps.play('rock')
-    end
     def test_play_assigns_player_move
       @rps.play('rock')
       assert_equal 'rock', @rps.instance_variable_get(:@player_move)
