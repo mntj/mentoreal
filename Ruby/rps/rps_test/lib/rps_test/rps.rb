@@ -190,6 +190,8 @@ class RPS
       else
         raise "This isn't a lizard-spock game! Try RPS.new(false, true) to begin a lizard-spock game."
       end
+    else
+      puts "Case statement broke!"
     end
   end
   def end_of_round_checker
