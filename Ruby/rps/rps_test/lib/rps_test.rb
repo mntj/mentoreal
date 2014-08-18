@@ -3,7 +3,7 @@ require "rps_test/rps.rb"
 
 module RpsTest
   require 'minitest/autorun'
-  class TestRPS < MiniTest::Test
+  class TestRPS < MiniTest::Unit::TestCase
     def setup
       @rps = RPS.new
     end

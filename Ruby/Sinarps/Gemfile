@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-require 'rps_test'
-require 'sinatra'
-require 'sinatra/reloader'
+gem 'rps_test'
+gem 'sinatra'
+gem 'sinatra-reloader'
 
