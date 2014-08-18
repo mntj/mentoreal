@@ -201,16 +201,16 @@ class RPS
       @computer_score = 0
       @wins += 1
       puts @string
-      puts "You won the round!"
+      return "You won the round!"
     elsif @computer_score === 3
       @score = 0
       @computer_score = 0
       @losses += 1
       puts @string
-      puts "You lost this round!"
+      return "You lost this round!"
     else
       puts @string
-      puts "Your score: #{@score}, Computer score: #{@computer_score}"
+      return "Your score: #{@score}, Computer score: #{@computer_score}"
     end
   end
 end
