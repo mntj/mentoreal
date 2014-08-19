@@ -1,7 +1,7 @@
-footer {
-  margin-top: 95%;
+* {
+  text-align: center;
 }
 
 body {
-  background-color: lightgoldenrodyellow;
+  background-color: lightblue;
 }
