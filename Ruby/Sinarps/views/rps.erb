@@ -6,11 +6,9 @@
 <a href="rps/paper">Paper</a>
 <a href="rps/scissors">Scissors</a>
 
-<% if session %>
-  <h3> <%= session[:string] %> </h3>
-  <h3> <%= session[:score_board] %> </h3>
-  <h4>Wins: <%= session[:wins] %> </h4>
-  <h4>Losses: <%= session[:losses] %> </h4>
-<% end %>
+<h3> <%= session[:string] %> </h3>
+<h3> <%= session[:score_board] %> </h3>
+<h4>Wins: <%= session[:wins] %> </h4>
+<h4>Losses: <%= session[:losses] %> </h4>
 
-<a href="/reset">Reset</a>
+<a href="/reset/rps">Reset</a>

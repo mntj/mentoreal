@@ -1,1 +1,15 @@
-<h1>Dynomite!</h1>
+<h1>Dyno-mite!</h1>
+
+<h3>Choose your move!</h3>
+
+<a href="dynamite/rock">Rock</a>
+<a href="dynamite/paper">Paper</a>
+<a href="dynamite/scissors">Scissors</a>
+<a href="dynamite/dynamite">Dynamite</a>
+
+<h3> <%= session[:string] %> </h3>
+<h3> <%= session[:score_board] %> </h3>
+<h4>Wins: <%= session[:wins] %> </h4>
+<h4>Losses: <%= session[:losses] %> </h4>
+
+<a href="/reset/dynamite">Reset</a>

@@ -3,6 +3,7 @@ Bundler.require
 enable :sessions
 
 get '/' do
+  session.clear
   erb :index
 end
 
@@ -10,18 +11,11 @@ get '/rps' do
   erb :rps
 end
 
-get '/reset' do
-  session.clear
-  redirect to('/')
-end
-
 get '/dynamite' do
-  d ||= RPS.new(true,false)
   erb :dynamite
 end
 
 get '/lizard-spock' do
-  l ||= RPS.new(false,true)
   erb :lizard_spock
 end
 
@@ -29,6 +23,24 @@ get '/rps/:move' do
   r = session[:game] || RPS.new
   pass_vars_to_session(r)
   redirect to('/rps')
+end
+
+get '/dynamite/:move' do
+  d = session[:game] || RPS.new(true, false)
+  pass_vars_to_session(d)
+  redirect to('/dynamite')
+end
+
+get '/lizard-spock/:move' do
+  l = session[:game] || RPS.new(false, true)
+  pass_vars_to_session(l)
+  redirect to('/lizard-spock')
+end
+
+get '/reset/:game' do
+  path = '/' + params[:game]
+  session.clear
+  redirect to(path)
 end
 
 def pass_vars_to_session(game)
