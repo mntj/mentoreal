@@ -1,10 +1,10 @@
 ENV['RACK_ENV'] = 'test'
 
-require 'minitest/autorun'
+require 'test/unit'
 require 'rack/test'
 require_relative 'app'
 
-class HowdyTest < Minitest::Test
+class HowdyTest < MiniTest::Unit::TestCase
   include Rack::Test::Methods
 
   def app
